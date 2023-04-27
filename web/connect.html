@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="">
+    <link rel="shortcut icon" href="" type="image/x-icon">
+    <link rel="stylesheet" href="./style.css">
+
+    <title></title>
+
+    <style>
+        body {
+            background: linear-gradient(90deg, #C7C5F4, #776BCC);
+        }
+
+        #myForm {
+            width: 50%;
+            margin: auto;
+        }
+
+        .sign-elt {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+        }
+
+        .sign-left {
+            left: 0;
+        }
+
+        .sign-right {
+            right: 0;
+            width: 50%;
+            margin: 0;
+            height: 100%;
+            overflow: auto;
+            padding: 0 10%;
+        }
+
+        .sign-elt {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .myForm {
+            display: flex;
+            flex-direction: column;
+        }
+
+        #myForm label {
+            display: flex;
+            flex-direction: column;
+            margin-top: 5px;
+        }
+
+        .via {
+            border-radius: 5px;
+            border: 1px yellowgreen solid;
+        }
+
+        #myForm #rappel {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            margin: 5px 0;
+        }
+
+        span {
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .notice {
+            display: block;
+            word-wrap: break-word;
+            text-align: center;
+            color: red;
+            border: 0;
+            border-radius: 4px/4px;
+            padding: 5px 0;
+            background-color: rgba(0, 0, 0, 0.09);
+            width: 200px;
+            margin: auto;
+            margin-top: 10px;
+            margin-bottom: 15px;
+        }
+
+        /* correction */
+        .correct {
+            border-color: rgba(13, 245, 13, 0.884);
+            /* width: 100%; */
+            border: 0;
+        }
+
+        .correct:focus {
+            border-color: rgba(13, 245, 13, 0.884);
+            box-shadow: 2px 2px 8px rgba(68, 191, 68, 0.5);
+            /* width: 100%; */
+        }
+
+        .incorrect {
+            border-color: rgba(255, 0, 0, 0.89);
+            /* width: 100%; */
+        }
+
+        .incorrect:focus {
+            border-color: rgba(255, 0, 0, 0.89);
+            /* width: 100%; */
+            box-shadow: 2px 2px 8px rgba(191, 68, 68, 0.5);
+        }
+
+        #myForm input {
+            font-size: medium;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            outline: none;
+            padding: 10px;
+            background-color: white;
+            border: none;
+            border-bottom: 1px rgba(0, 0, 0, 0.1) solid;
+            width: 100%;
+            /* border-radius: 5px; */
+        }
+
+        input:focus {
+            width: 100%;
+            border-color: rgba(82, 168, 236, 0.75);
+            border: 1px rgba(0, 0, 0, 0.8);
+            box-shadow: 0 0 8px rgba(82, 168, 236, 0.5);
+        }
+
+        select {
+            display: flex;
+            flex-direction: column;
+            outline: none;
+            border-radius: 5px;
+            background-color: white;
+            width: 100%;
+        }
+
+        select:focus {
+            border-color: rgba(82, 168, 236, 0.75);
+            box-shadow: 0 0 8px rgba(82, 168, 236, 0.5);
+            border-radius: 5px;
+            width: 100%;
+        }
+
+        /* End of correct */
+
+        fieldset {
+            border: 1px solid black;
+            border-radius: 5px;
+            background-color: white;
+        }
+
+        #body #submit {
+            width: 200px;
+        }
+
+        #body #submit:hover {
+            background-color: blue;
+            color: white;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+    <div class="container container--body bg-light rounded-2 p-2 mt-3" id="body">
+        <form action="" method="post" class="row text-start" id="myForm">
+            <fieldset class="col-12 mt-5 border border-1 border-success">
+                <legend class="text-success fw-bold">Connexion</legend>
+                <label class="label" for="login">Login</label><input class="input-zone" type="text" name="" id="login"
+                    required require>
+                <label class="label" for="password">Mot de passe</label> <input class="input-zone" type="password"
+                    name="pass" id="password" required require>
+            </fieldset>
+            <input class="col-2 submit border border-1 rounded-1 p-2 mt-5" onclick="connected()" id="submit"
+                type="button" value="Je me connecte">
+        </form>
+    </div>
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+        crossorigin="anonymous"></script>
+
+    <script>
+        function connected() {
+
+            var log = document.getElementById("login").value;
+            var pas = document.getElementById("password").value;
+
+            fetch('https://face.activactions.net/api/Connexion/Get/')
+                .then(res => res.json())
+                .then(dataLog => {
+
+                    for (let item of dataLog) {
+                        if ((log == item.Login) && (pas == item.Password)) {
+                            // location.replace('https://localhost:7135/audit1');
+                            console.log('correct pass ' + item.Login);
+
+
+                        } else
+                            console.log('non correct pass');
+
+                    }
+                })
+
+
+
+        }
+
+
+
+    </script>
+
+
+    <!-- <script src="./public/js/bootstrap.min.js"></script> -->
+</body>
+
+</html>

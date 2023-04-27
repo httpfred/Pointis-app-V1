@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: auto;
+            font-family: 'Open sans', sans-serif;
+            width: 60%;
+        }
+
+        form {
+            margin-top: 10%;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .bloc {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .bloc label {
+            display: flex;
+            flex-direction: column;
+            margin: 0 10px;
+
+        }
+
+        input {
+            outline: none;
+        }
+
+        .tester {
+            margin-top: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div>
+        <form action="">
+            <div class="bloc">
+                <label for="">
+                    Start
+                    <input type="number" name="" id="start">
+                </label>
+                <label for="">
+                    End
+                    <input type="number" name="" id="end">
+                </label>
+            </div>
+            <div class="bloc">
+                <label for="">
+                    Presence 1
+                    <input type="number" name="" id="p1">
+                </label>
+                <label for="">
+                    Presence 2
+                    <input type="number" name="" id="p2">
+                </label>
+            </div>
+            <div for="">
+                Absence
+                <span id="Abs"></span>
+            </div>
+            <input type="button" value="Tester" class="tester" onclick="absCalcul()">
+
+
+        </form>
+    </div>
+
+
+
+
+
+
+
+    <script>
+
+        function absCalcul() {
+            var valueP1 = document.getElementById('p1').value,
+                valueP2 = document.getElementById('p2').value,
+                valueStart = document.getElementById('start').value,
+                valueEnd = document.getElementById('end').value,
+                valueAbs = document.getElementById('abs');
+
+
+            var ht = 0,
+                pt1 = 0,
+                pt2 = 0,
+                e = 0,
+                s = 0,
+                day = 0;
+
+            pt1 = valueP1;
+            pt2 = valueP2;
+            s = valueEnd;
+            e = valueStart;
+
+            ht = s - e;
+            tt = day * ht;
+
+
+
+            // valueAbs.innerHTML = abs;
+            alert(abs);
+            pt1 = 0;
+            pt2 = 0;
+            s = 0;
+            e = 0;
+        }
+
+
+        function calculerHeuresAbsence(heureArrivee, heureDepart, heureDebutTravail, heureFinTravail) {
+            const heureDebut = new Date(`1970-01-01T${heureDebutTravail}`);
+            const heureFin = new Date(`1970-01-01T${heureFinTravail}`);
+            const heureArriveeObj = new Date(`1970-01-01T${heureArrivee}`);
+            const heureDepartObj = new Date(`1970-01-01T${heureDepart}`);
+
+            const minutesTravail = (heureFin - heureDebut) / 60000; // Calculer la durée de travail en minutes
+            const minutesAbsence = (heureArriveeObj - heureDebut) / 60000 + (heureFin - heureDepartObj) / 60000; // Calculer la durée d'absence en minutes
+            const heuresAbsence = minutesAbsence / 60; // Convertir les minutes d'absence en heures
+
+            return heuresAbsence.toFixed(2); // Retourner le résultat avec deux décimales
+        }
+
+        const heuresAbsence = calculerHeuresAbsence("08:30", "18:30", "08:00", "18:00");
+        console.log(`Vous avez ${heuresAbsence} heures d'absence.`);
+
+
+        /*
+        Adapter mon heure d'arriver et de depart
+        Notez que les heures d'arrivée et de départ doivent être au format "HH:MM",
+         et les heures de début et de fin de travail doivent être au format "HH:MM:SS"
+
+        */
+
+
+
+
+
+
+
+
+
+    </script>
+
+</body>
+
+</html>

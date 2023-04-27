@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="">
+    <link rel="shortcut icon" href="" type="image/x-icon">
+    <link rel="stylesheet" href="./style.css">
+
+    <title></title>
+
+    <style>
+        body {
+            background: linear-gradient(90deg, #C7C5F4, #776BCC);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #body {
+            width: 50%;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+    <div class="container m-5 p-5 " id="body">
+        <script>
+            //import code
+            function qrGenerate() {
+                var id = sessionStorage.getItem("badge");
+                console.log(id);
+
+
+                var ident = parseFloat(id);
+                console.log(ident);
+                console.log(id);
+
+
+                var no = '';
+                var em = '';
+                var tel = '';
+                var pre = '';
+                var _qrCode = '';
+
+
+                fetch('https://face.activactions.net/api/Employes/Get/' + ident)
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        for (let item of data) {
+                            no = item.Nom;
+                            pre = item.Prenom;
+                            em = item.Email;
+                            tel = item.Telephone;
+
+                            var nom = document.getElementById('nom');
+                            nom.innerHTML = no + ' '+ pre;
+
+                            _qrCode = 'https://chart.googleapis.com/chart?cht=qr&chs=250x250&chld=L|1&chl=' + id + ' ' + no + ' ' + pre + '' + tel + ' ' + em;
+                            document.getElementById('qrCodeImg').setAttribute('src', _qrCode);
+
+                        }
+
+                    });
+
+
+                var url = id + no + pre + em + tel;
+                var nomE = "Fred";
+                var textE = "ahoussifred@gmail.com";
+
+                // Selon le choix d'API, commentez l'une des deux lignes suivantes et décommentez l'autre
+
+                // _qrCode = 'https://chart.googleapis.com/chart?cht=qr&chs=250x250&chld=L|1&chl=' + nomE + textE;
+                // _qrCode = 'https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=' + url;
+
+                // document.getElementById('qrCodeImg').setAttribute('src', _qrCode);
+                // document.getElementById('qrcode').style.visibility = 'visible';
+
+            }
+
+            qrGenerate();
+
+
+
+        </script>
+        <div class="row  text-center">
+            <div class="col-8  m-auto">
+                <div class="bg-white rounded shadow py-5 px-4">
+                    <img src="" alt="" width="100" class="img-fluid mb-3 img-thumbnail shadow-sm" id="qrCodeImg"
+                        alt="votre qrCode">
+                    <h5 class="mb-0" id="nom"></h5>
+                    <!-- <span class="small text-uppercase text-muted" id="prenom"></span> -->
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+        crossorigin="anonymous"></script>
+
+
+
+
+    <!-- <script src="./public/js/bootstrap.min.js"></script> -->
+</body>
+
+</html>

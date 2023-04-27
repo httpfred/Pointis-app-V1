@@ -1,0 +1,522 @@
+<?php
+session_start();
+if (isset($_GET['option']) and $_GET['option'] == 'logout') {
+    require './view/logOut.php';
+}
+?>
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="">
+    <link rel="shortcut icon" href="" type="image/x-icon">
+    <link rel="stylesheet" href="./style.css">
+
+    <title>
+
+    </title>
+    <style>
+        #body {
+            margin: auto;
+            /* background-color: #304767; */
+            background-color: whitesmoke;
+        }
+
+        .logo {
+            width: 100px;
+        }
+
+        .container-head {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        .container--brand img {
+            width: 120px;
+        }
+
+        body a {
+            text-decoration: none;
+        }
+
+        body h2 {
+            font-size: 40px;
+            font-weight: bolder;
+            /* color: orangered; */
+        }
+
+        @media all and (max-width:810px) {
+            #navbar-nav {
+                justify-content: end;
+            }
+        }
+
+        #row-nav {
+            z-index: 19999;
+            position: sticky;
+            top: 0;
+        }
+
+        .account-avatar {
+            display: flex;
+            flex-direction: row;
+            /* 
+            border-radius: 24px;
+            border: 1px #0d6efd solid;
+            padding: 5px 10px;
+            color: #212529; */
+        }
+
+        .account-avatar img {
+            width: 25px;
+            height: 25px;
+        }
+
+        .container--brand .row {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        .container--brand {
+            background-color: #304767;
+
+        }
+
+        /* .account-avatar:hover {
+            background-color: #0d6efd;
+            color: #f8f9fa;
+            color: white;
+            color: #0d6efd;
+        } */
+
+        .avatar {
+            width: 25px;
+            border: 3px solid #fff;
+            border-radius: 25px;
+            background-color: #fff;
+        }
+
+        .start {
+            margin-top: 15px;
+            width: 200px;
+            text-align: center;
+            padding: 0 15px;
+            border: 1px #0d6efd solid;
+            padding: 5px 10px;
+            color: #212529;
+            border-radius: 24px;
+
+        }
+
+        .img-import {
+            width: 180px;
+        }
+
+        /* Import */
+
+        .card {
+            background-color: #fff;
+            border-radius: 10px;
+            border: none;
+            position: relative;
+            margin-bottom: 30px;
+            box-shadow: 0 0.46875rem 2.1875rem rgba(90, 97, 105, 0.1), 0 0.9375rem 1.40625rem rgba(90, 97, 105, 0.1), 0 0.25rem 0.53125rem rgba(90, 97, 105, 0.12), 0 0.125rem 0.1875rem rgba(90, 97, 105, 0.1);
+        }
+
+        .l-bg-cherry {
+            background: linear-gradient(to right, #493240, #f09) !important;
+            color: #fff;
+        }
+
+        .l-bg-blue-dark {
+            background: linear-gradient(to right, #373b44, #4286f4) !important;
+            color: #fff;
+        }
+
+        .l-bg-green-dark {
+            background: linear-gradient(to right, #0a504a, #38ef7d) !important;
+            color: #fff;
+        }
+
+        .l-bg-orange-dark {
+            background: linear-gradient(to right, #a86008, #ffba56) !important;
+            color: #fff;
+        }
+
+        .card .card-statistic-3 .card-icon-large .fas,
+        .card .card-statistic-3 .card-icon-large .far,
+        .card .card-statistic-3 .card-icon-large .fab,
+        .card .card-statistic-3 .card-icon-large .fal {
+            font-size: 110px;
+        }
+
+        .card .card-statistic-3 .card-icon {
+            text-align: center;
+            line-height: 50px;
+            margin-left: 15px;
+            color: #000;
+            position: absolute;
+            right: -5px;
+            top: 20px;
+            opacity: 0.1;
+        }
+
+        .l-bg-cyan {
+            background: linear-gradient(135deg, #289cf5, #84c0ec) !important;
+            color: #fff;
+        }
+
+        .l-bg-green {
+            background: linear-gradient(135deg, #23bdb8 0%, #43e794 100%) !important;
+            color: #fff;
+        }
+
+        .l-bg-orange {
+            background: linear-gradient(to right, #f9900e, #ffba56) !important;
+            color: #fff;
+        }
+
+        .l-bg-cyan {
+            background: linear-gradient(135deg, #289cf5, #84c0ec) !important;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container-fluid body" id="body">
+
+        <div class="row" id="row-nav">
+            <nav class="col navbar navbar-expand-lg navbar-light fixed-top shadow-sm" style="background-color: white;"
+                id="nav">
+                <div class="container-fluid container-head d-flex flex-row align-content-center justify-content-center">
+                    <img src="./_pointIS.png" alt="" class="logo">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
+                        aria-labelledby="offcanvasNavbarLabel">
+                        <div class="offcanvas-header">
+                            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Pointis</h5>
+                            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="offcanvas-body">
+                            <ul class="navbar-nav justify-content-center flex-grow-1 pe-3" id="navbar-nav">
+                                <li class="nav-item">
+                                    <a class="nav-link text-light nav-help" href="index.php?page=teams&amp;index=help"
+                                        id="nav-help">Centre d'aide</a>
+                                </li>
+                            </ul>
+                            <div class="profil d-flex">
+                                <a href="./connect.html" class="account-avatar d-flex me-2 align-self-center"
+                                    id="nav-account__connect">
+                                    <span>Connectez-vous</span>
+                                </a>
+
+                                <a href="./form.html" class="account-avatar d-flex me-2 align-self-center"
+                                    id="nav-account__connect">
+                                    <span> | Inscription</span>
+                                </a>
+                            </div>
+                            <!--
+                            <div class="profil d-flex">
+                                <?php
+                                if (isset($_SESSION['nom'], $_SESSION['prenoms'])) {
+                                ?>
+                                    <div class="dropdown align-self-center d-flex">
+                                        <a class="account-avatar dropdown-toggle" href="index.php?" id="offcanvasNavbarDropdown-profil" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <img src="./public/img/avatar/Fred-sm.JPG" alt="" class="avatar">
+                                            <strong class="pseudo" id="pseudo"><?php echo $_SESSION['prenoms'] . ' ' . $_SESSION['nom'] ?></strong>
+                                        </a>
+                                        <ul class="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown-profil">
+                                            <li>
+                                                <a class="dropdown-item d-flex" href="index.php?profil=on&amp;option=offre">
+                                                    <img src="./public/img/icons/gift.svg" alt="" class="icon">
+                                                    Mes offres
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item d-flex" href="index.php?profil=on&amp;option=couriels">
+                                                    <img src="./public/img/icons/bell.svg" alt="" class="icon">
+                                                    Couriels
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item d-flex" href="index.php?profil=on&amp;option=update">
+                                                    <img src="./public/img/icons/gear.svg" alt="" class="icon">
+                                                    Actualiser
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <hr class="dropdown-divider">
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item d-flex" href="index.php?page=home&amp;option=logout">
+                                                    <img src="./public/img/icons/power.svg" alt="" class="icon">
+                                                    Se déconnecter
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                <?php
+                                } else {
+                                ?>
+                                   
+                                <?php
+                                }
+                                ?>
+                            </div>
+                        -->
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div class="row">
+            <div class="col-12 text-center text-light mt-5">
+                <h2 class="brand-body mt-5">
+                    <!-- Votre gestionnaire de personnel -->
+                </h2>
+                <!--                 
+                <a href="./form.html" class="start mt-3">
+                    Demarrez l'offre
+                </a> 
+            -->
+            </div>
+        </div>
+        <div class="container rounded-3">
+            <div class="container container--brand shadow border border-1 border-light rounded mt-5 p-2">
+                <div class="row d-flex flex-row align-content-center justify-content-center">
+                    <!-- <div class="col">
+                        <img class="" src="./suiveurs.png" alt="">
+                    </div> -->
+                    <div class="col-12 text-light text-center bloc bloc--chiffre ">
+                        <h3 class="fw-bold">Gerez votre personnel</h3>
+                        <h4>via votre plateforme</h4>
+                    </div>
+                </div>
+            </div>
+            <!-- 
+            div class="row mt-5 mb-4 text-center text-dark">
+                <h3 class="col-12 mt-5 fw-bold">Definissez votre formule</h3>
+                <h4 class="col-12 mt-5">Systemes programmable</h4>
+                <p class="col-12">Donnez vie à des robots </p>
+            </div> 
+        -->
+            <!--
+            <div class="container">
+                <div class="row justify-content-center p-5">
+                    <div class="col col-lg-4"></div>
+                    <div class="col-12 col-lg-4">
+                        <img src="./_pointIS.png" alt="" class="img-import">
+                    </div>
+                    <div class="col col-lg-4"></div>
+                </div>
+            </div>
+        -->
+
+
+            <!--
+            <div class="row text-center p-4 d-flex justify-content-center">
+                <div class="col-12 col-lg-3 m-2 card">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body vitrine">
+                        <h5 class="card-title">Robotique</h5>
+                        <p class="card-text">Mettez sur pied un dispositif programmable</p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <strong>50.000</strong> - <strong>80.000</strong> F</em>
+                        </li>
+                    </ul>
+                    <div class="card-body">
+                        <a href="#" class="card-link">Je choisi</a>
+                    </div>
+                </div>
+            </div>
+        -->
+
+        </div>
+
+
+        <div class="container m-auto">
+            <div class="row mt-5 ">
+                <div class="col-xl-3 col-lg-3">
+                    <div class="card l-bg-cherry">
+                        <div class="card-statistic-3 p-4">
+                            <div class="card-icon card-icon-large"><i class="fas fa fa-check"></i></div>
+                            <div class="mb-4">
+                                <h5 class="card-title mb-0">Suivie</h5>
+                            </div>
+                            <div class="row align-items-center mb-2 d-flex">
+                                <div class="col-8">
+                                    <h2 class="d-flex align-items-center mb-0">
+                                    </h2>
+                                </div>
+                                <div class="col-4 text-right">
+                                    <span> <i class="fa fa-arrow-up"></i></span>
+                                </div>
+                            </div>
+                            <div class="progress mt-1 " data-height="8" style="height: 8px;">
+                                <div class="progress-bar l-bg-cyan" role="progressbar" data-width="25%"
+                                    aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3">
+                    <div class="card l-bg-blue-dark">
+                        <div class="card-statistic-3 p-4">
+                            <div class="card-icon card-icon-large"><i class="fas fa-users"></i></div>
+                            <div class="mb-4">
+                                <h5 class="card-title mb-0">Employers</h5>
+                            </div>
+                            <div class="row align-items-center mb-2 d-flex">
+                                <div class="col-8">
+                                    <h2 class="d-flex align-items-center mb-0">
+                                    </h2>
+                                </div>
+                                <div class="col-4 text-right">
+                                    <span><i class="fa fa-arrow-up"></i></span>
+                                </div>
+                            </div>
+                            <div class="progress mt-1 " data-height="8" style="height: 8px;">
+                                <div class="progress-bar l-bg-green" role="progressbar" data-width="25%"
+                                    aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3">
+                    <div class="card l-bg-green-dark">
+                        <div class="card-statistic-3 p-4">
+                            <div class="card-icon card-icon-large"><i class="fas fa-map-marker"></i></div>
+                            <div class="mb-4">
+                                <h5 class="card-title mb-0">Localisation</h5>
+                            </div>
+                            <div class="row align-items-center mb-2 d-flex">
+                                <div class="col-8">
+                                    <h2 class="d-flex align-items-center mb-0">
+                                    </h2>
+                                </div>
+                                <div class="col-4 text-right">
+                                    <span></span> <i class="fa fa-arrow-up"></i></span>
+                                </div>
+                            </div>
+                            <div class="progress mt-1 " data-height="8" style="height: 8px;">
+                                <div class="progress-bar l-bg-orange" role="progressbar" data-width="25%"
+                                    aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-lg-3">
+                    <div class="card l-bg-green-dark">
+                        <div class="card-statistic-3 p-4">
+                            <div class="card-icon card-icon-large"><i class="fas fa-pencil-square-o"></i></div>
+                            <div class="mb-4">
+                                <h5 class="card-title mb-0">Rapport de retard</h5>
+                            </div>
+                            <div class="row align-items-center mb-2 d-flex">
+                                <div class="col-8">
+                                    <h2 class="d-flex align-items-center mb-0">
+                                    </h2>
+                                </div>
+                                <div class="col-4 text-right">
+                                    <span>
+                                         <i class="fa fa-arrow-up"></i></span>
+                                </div>
+                            </div>
+                            <div class="progress mt-1 " data-height="8" style="height: 8px;">
+                                <div class="progress-bar l-bg-orange" role="progressbar" data-width="25%"
+                                    aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6">
+                    <div class="card l-bg-orange-dark">
+                        <div class="card-statistic-3 p-4">
+                            <div class="card-icon card-icon-large"><i class="fas fa-id-card"></i></div>
+                            <div class="mb-4">
+                                <h5 class="card-title mb-0">Management</h5>
+                            </div>
+                            <div class="row align-items-center mb-2 d-flex">
+                                <div class="col-8">
+                                    <h2 class="d-flex align-items-center mb-0">
+                                    </h2>
+                                </div>
+                                <div class="col-4 text-right">
+                                    <span>
+                                        <i class="fa fa-arrow-up"></i></span>
+                                </div>
+                            </div>
+                            <div class="progress mt-1 " data-height="8" style="height: 8px;">
+                                <div class="progress-bar l-bg-cyan" role="progressbar" data-width="25%"
+                                    aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6">
+                    <div class="card l-bg-cherry">
+                        <div class="card-statistic-3 p-4">
+                            <div class="card-icon card-icon-large"><i class="fas fa-tachometer"></i></div>
+                            <div class="mb-4">
+                                <h5 class="card-title mb-0">Tableau de bord</h5>
+                            </div>
+                            <div class="row align-items-center mb-2 d-flex">
+                                <div class="col-8">
+                                    <h2 class="d-flex align-items-center mb-0">
+                                    </h2>
+                                </div>
+                                <div class="col-4 text-right">
+                                    <span>
+                                        <i class="fa fa-arrow-up"></i></span>
+                                </div>
+                            </div>
+                            <div class="progress mt-1 " data-height="8" style="height: 8px;">
+                                <div class="progress-bar l-bg-cyan" role="progressbar" data-width="25%"
+                                    aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+        integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+        crossorigin="anonymous"></script>
+
+    <!-- <script src="./public/js/bootstrap.min.js"></script> -->
+</body>
+
+</html>

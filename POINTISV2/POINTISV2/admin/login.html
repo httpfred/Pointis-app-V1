@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html class="h-100" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>POINTIS</title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="#">
+    <link href="../css/style.css" rel="stylesheet">
+
+</head>
+
+<body class="h-100">
+
+    <!--*******************
+        Preloader start
+    ********************-->
+    <div id="preloader">
+        <div class="loader">
+            <svg class="circular" viewBox="25 25 50 50">
+                <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10" />
+            </svg>
+        </div>
+    </div>
+    <!--*******************
+        Preloader end*$
+    ********************-->
+
+    <script>
+
+
+        function connexion() {
+
+            fetch('https://face.activactions.net/api/Connexion/Get')
+                .then(res => res.json())
+                .then(data => {
+                    // console.log(data);
+                    var t = document.getElementById("log").value;
+                    var d = document.getElementById("pass").value;
+
+                    for (let item of data) {
+                        var log = item.Login;
+                        var Password = item.Password;
+                        var r = item.Role;
+                        if (t == log && d == Password) {
+                            var idsociete = item.SocieteID;
+                            console.log(idsociete);
+                            sessionStorage.setItem("u", idsociete);
+                            if ((r == "admin") || (r == "Admin")) {
+                                console.log("ok");
+                                /*alert('ENREGISTREMENT REUSSI');*/
+                                // location.replace('./admin/index.html');
+                                location.replace('./index.html');
+                            }
+
+                            else {
+                                // console.log("erreur");
+                                /*alert('ENREGISTREMENT REUSSI');*/
+                                // location.replace('./employes/index2.html');
+                                location.replace('../employes/index2.html');
+                            }
+                            /*
+                            if ((r == "utilisateur") || (r == "Utilisateur")) {
+
+                                console.log("ok");
+                                location.replace('./employes/index2.html');
+                            }
+                            else {
+                                console.log("erreur");
+                            }
+                            
+                            if ((r == "employe") || (r == "Employe")) {
+
+                                console.log("ok");
+                                location.replace('./utilisateur/index3.html');
+                            }
+                            else {
+                                console.log("erreur");
+                            }
+                            */
+
+
+                        } else {
+                            console.log('Connexion échouée !');
+                        }
+                    }
+                });
+        }
+    </script>
+
+    <div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+    <form style="height: 520px;
+width: 400px;
+background-color: rgba(255,255,255,0.13);
+position: absolute;
+transform: translate(-50%,-50%);
+top: 50%;
+left: 50%;
+border-radius: 10px;
+backdrop-filter: blur(10px);
+border: 2px solid rgba(255,255,255,0.1);
+box-shadow: 0 0 40px rgba(8,7,16,0.6);
+padding: 50px 35px;">
+        <h3> <img class="img-fluid" src="../images/_pointIS.png" width="150px"></h3>
+
+        <label for="username"></label>
+        <input type="text" placeholder="adresse mail" id="log">
+
+        <label for="password"></label>
+        <input type="password" placeholder="Mot de passe" id="pass">
+        <br>
+        <br>
+        <input type="button" value="Connexion" class="btn __btn submit p-auto text-center " onclick="connexion();">
+
+    </form>
+    <!--   <div class="form-group"> 
+                                        <input type="text" class="form-control" id="log" placeholder="Adresse mail">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" class="form-control" id="pass"  placeholder="Mot de passe">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="Role"  placeholder="Role">
+                                    </div>
+                                    <div class="form-group">
+                               <input class="btn login-form__btn submit w-100" type="button" onclick="connexion();" style="background-color:#8DC63F;" value="Connexion" />
+                                    </div>-->
+
+
+    <!--      <p class="mt-5 login-form__footer">Creer un compte? <a href="page-register.html" class="text-primary">Connexion</a> </p>-->
+
+
+
+    <!--**********************************
+        Scripts
+    ***********************************-->
+    <script src="../plugins/common/common.min.js"></script>
+    <script src="../js/custom.min.js"></script>
+    <script src="../js/settings.js"></script>
+    <script src="../js/gleek.js"></script>
+    <script src="../js/styleSwitcher.js"></script>
+</body>
+
+</html>
